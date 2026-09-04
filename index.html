@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mundo das Flores</title>
+    <style>
+        /* Estilos Gerais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #fcf8f2;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Cabeçalho */
+        header {
+            background-color: #4a6741;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        /* Conteúdo Principal */
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .introducao {
+            text-align: center;
+            margin-bottom: 3rem;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        /* Grade de Flores (Cards) */
+        .galeria {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Imagem placeholder usando serviço gratuito */
+        .card-img {
+            width: 100%;
+            height: 200px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-center: center;
+            color: #666;
+            font-weight: bold;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Cores de fundo diferentes simulando fotos para o exemplo */
+        .rosa { background-color: #ffb7b2; }
+        .girassol { background-color: #ffdac1; }
+        .lavanda { background-color: #e2f0cb; }
+
+        .card-conteudo {
+            padding: 1.5rem;
+        }
+
+        .card-conteudo h3 {
+            color: #4a6741;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 4rem;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Mundo das Flores</h1>
+        <p>Descubra a beleza, as cores e os significados das mais belas espécies</p>
+    </header>
+
+    <main>
+        <section class="introducao">
+            <h2>A Magia da Natureza</h2>
+            <p>As flores alegram nossos dias, decoram nossos lares e guardam significados profundos. Conheça algumas das variedades mais populares e encante-se.</p>
+        </section>
+
+        <section class="galeria">
+            <!-- Card 1 -->
+            <article class="card">
+                <div class="card-img rosa"></div>
+                <div class="card-conteudo">
+                    <h3>Rosas</h3>
+                    <p>Clássicas e elegantes, as rosas são o símbolo universal do amor e do romance. Cada cor carrega um significado único, desde a paixão das vermelhas até a paz das brancas.</p>
+                </div>
+            </article>
+
+            <!-- Card 2 -->
+            <article class="card">
+                <div class="card-img girassol"></div>
+                <div class="card-conteudo">
+                    <h3>Girassóis</h3>
+                    <p>Sempre em busca da luz solar, os girassóis representam felicidade, vivacidade e energia positiva. Suas cores vibrantes iluminam qualquer ambiente.</p>
+                </div>
+            </article>
+
+            <!-- Card 3 -->
+            <article class="card">
+                <div class="card-img lavanda"></div>
+                <div class="card-conteudo">
+                    <h3>Lavandas</h3>
+                    <p>Famosas por seu aroma relaxante e coloração lilás inconfundível, as lavandas trazem uma sensação instantânea de tranquilidade, pureza e calma.</p>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Jardim Digital - Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+</html>
