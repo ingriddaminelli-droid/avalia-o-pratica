@@ -5,26 +5,76 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mundo das Flores</title>
     <style>
+        /* Variáveis de Cores para Troca de Tema */
+        :root {
+            --bg-principal: #fcf8f2;
+            --bg-card: #ffffff;
+            --texto-principal: #333333;
+            --texto-suave: #666666;
+            --cor-primaria: #4a6741;
+            --cor-cabecalho-bg: #4a6741;
+            --cor-cabecalho-texto: #ffffff;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="dark"] {
+            --bg-principal: #121212;
+            --bg-card: #1e1e1e;
+            --texto-principal: #e0e0e0;
+            --texto-suave: #b0b0b0;
+            --cor-primaria: #81a673;
+            --cor-cabecalho-bg: #1a2e15;
+            --cor-cabecalho-texto: #e0e0e0;
+            --shadow: rgba(0, 0, 0, 0.5);
+        }
+
         /* Estilos Gerais */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         body {
-            background-color: #fcf8f2;
-            color: #333;
+            background-color: var(--bg-principal);
+            color: var(--texto-principal);
             line-height: 1.6;
+        }
+
+        /* Botão de Alternar Tema (Fixo na Tela) */
+        .btn-tema {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--cor-primaria);
+            color: white;
+            border: none;
+            padding: 12px 16px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            box-shadow: 0 4px 10px var(--shadow);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-tema:hover {
+            opacity: 0.9;
+            transform: scale(1.05);
         }
 
         /* Cabeçalho */
         header {
-            background-color: #4a6741;
-            color: white;
-            padding: 2rem;
+            background-color: var(--cor-cabecalho-bg);
+            color: var(--cor-cabecalho-texto);
+            padding: 2.5rem 2rem;
             text-align: center;
+            box-shadow: 0 2px 5px var(--shadow);
         }
 
         header h1 {
@@ -47,10 +97,10 @@
         .introducao {
             text-align: center;
             margin-bottom: 3rem;
-            background-color: white;
+            background-color: var(--bg-card);
             padding: 2rem;
             border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 6px var(--shadow);
         }
 
         /* Grade de Flores (Cards) */
@@ -61,49 +111,51 @@
         }
 
         .card {
-            background-color: white;
+            background-color: var(--bg-card);
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+            box-shadow: 0 4px 6px var(--shadow);
         }
 
         .card:hover {
             transform: translateY(-5px);
         }
 
-        /* Imagem placeholder usando serviço gratuito */
+        /* Imagens configuradas direto por CSS */
         .card-img {
             width: 100%;
-            height: 200px;
-            background-color: #ddd;
-            display: flex;
-            align-items: center;
-            justify-center: center;
-            color: #666;
-            font-weight: bold;
+            height: 240px;
             background-size: cover;
             background-position: center;
         }
 
-        /* Cores de fundo diferentes simulando fotos para o exemplo */
-        .rosa { background-color: #ffb7b2; }
-        .girassol { background-color: #ffdac1; }
-        .lavanda { background-color: #e2f0cb; }
+        .rosa { 
+            background-image: url('https://pexels.com'); 
+        }
+        .girassol { 
+            background-image: url('https://stockcake.com'); 
+        }
+        .lavanda { 
+            background-image: url('https://ukposters.co.uk'); 
+        }
 
         .card-conteudo {
             padding: 1.5rem;
         }
 
         .card-conteudo h3 {
-            color: #4a6741;
+            color: var(--cor-primaria);
             margin-bottom: 0.5rem;
+        }
+
+        .card-conteudo p {
+            color: var(--texto-suave);
         }
 
         /* Rodapé */
         footer {
-            background-color: #333;
-            color: white;
+            background-color: #1a1a1a;
+            color: #ffffff;
             text-align: center;
             padding: 1.5rem;
             margin-top: 4rem;
@@ -112,6 +164,11 @@
     </style>
 </head>
 <body>
+
+    <!-- Botão Flutuante Interativo -->
+    <button class="btn-tema" id="toggleTema" aria-label="Alternar tema visual">
+        <span id="icone-tema">🌙</span> <span id="texto-botao">Modo Escuro</span>
+    </button>
 
     <header>
         <h1>Mundo das Flores</h1>
@@ -158,5 +215,29 @@
         <p>&copy; 2026 Jardim Digital - Todos os direitos reservados.</p>
     </footer>
 
+    <!-- Lógica em JavaScript para Controle de Temas -->
+    <script>
+        const botaoTema = document.getElementById('toggleTema');
+        const iconeTema = document.getElementById('icone-tema');
+        const textoBotao = document.getElementById('texto-botao');
+        const htmlElemento = document.documentElement;
+
+        botaoTema.addEventListener('click', () => {
+            // Verifica o tema atual aplicado na tag <html>
+            const temaAtual = htmlElemento.getAttribute('data-theme');
+
+            if (temaAtual === 'dark') {
+                // Altera para o Modo Claro
+                htmlElemento.removeAttribute('data-theme');
+                iconeTema.textContent = '🌙';
+                textoBotao.textContent = 'Modo Escuro';
+            } else {
+                // Altera para o Modo Escuro
+                htmlElemento.setAttribute('data-theme', 'dark');
+                iconeTema.textContent = '☀️';
+                textoBotao.textContent = 'Modo Claro';
+            }
+        });
+    </script>
 </body>
 </html>
